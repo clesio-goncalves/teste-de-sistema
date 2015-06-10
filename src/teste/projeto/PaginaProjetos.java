@@ -30,34 +30,34 @@ public class PaginaProjetos {
 				&& driver.getPageSource().contains(previsao);
 	}
 
-	public PaginaDetalhesProjeto detalhes() {
+	public PaginaDetalhesProjeto detalhes(int posicao) {
 		List<WebElement> elementos = driver.findElements(By
 				.linkText("Detalhes"));
-		elementos.get(elementos.size() - 1).click();
+		elementos.get(posicao - 1).click();
 
 		return new PaginaDetalhesProjeto(driver);
 	}
 
-	public PaginaColaboradoresDoProjeto colaboradores() {
+	public PaginaColaboradoresDoProjeto colaboradores(int posicao) {
 		List<WebElement> elementos = driver.findElements(By
 				.linkText("Colaboradores"));
-		elementos.get(elementos.size() - 1).click();
+		elementos.get(posicao - 1).click();
 
 		return new PaginaColaboradoresDoProjeto(driver);
 	}
 
-	public PaginaTarefas tarefas() {
+	public PaginaTarefas tarefas(int posicao) {
 		List<WebElement> elementos = driver
 				.findElements(By.linkText("Tarefas"));
-		elementos.get(elementos.size() - 1).click();
+		elementos.get(posicao - 1).click();
 
 		return new PaginaTarefas(driver);
 	}
 
-	public PaginaProjetosFinalizados finalizar() {
+	public PaginaProjetosFinalizados finalizar(int posicao) {
 		List<WebElement> elementos = driver.findElements(By
 				.linkText("Finalizar"));
-		elementos.get(elementos.size() - 1).click();
+		elementos.get(posicao - 1).click();
 
 		// Aceita o alert
 		driver.switchTo().alert().accept();

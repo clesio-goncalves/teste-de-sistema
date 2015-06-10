@@ -1,6 +1,10 @@
 package teste.projeto;
 
+import java.util.List;
+
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 public class PaginaProjetosFinalizados {
 
@@ -10,11 +14,15 @@ public class PaginaProjetosFinalizados {
 		this.driver = driver;
 	}
 
-	public boolean existeNaListagem(String titulo, String previsao) {
-		// Acessa a url com projetos finalizados
+	public void visita() {
 		driver.get("http://localhost/engenharia/admin/projeto/finalizados");
-		return driver.getPageSource().contains(titulo)
-				&& driver.getPageSource().contains(previsao);
 	}
 
+	public PaginaDetalhesProjetoFinalizado detalhesFinalizados() {
+		List<WebElement> elementos = driver.findElements(By
+				.linkText("Detalhes"));
+		elementos.get(elementos.size() - 1).click();
+
+		return new PaginaDetalhesProjetoFinalizado(driver);
+	}
 }

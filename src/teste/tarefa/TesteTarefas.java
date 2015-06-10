@@ -45,7 +45,7 @@ public class TesteTarefas {
 		// Remover isso depois que woshington concertar a funcionalidade de
 		// adicionar projeto
 		projetos.visita();
-		projetos.tarefas().nova().cadastra(titulo, descricao);
+		projetos.tarefas(1).nova().cadastra(titulo, descricao);
 		assertTrue(tarefas.existeNaListagem(titulo, descricao));
 	}
 
@@ -54,7 +54,7 @@ public class TesteTarefas {
 		// Remover isso depois que woshington concertar a funcionalidade de
 		// adicionar projeto
 		projetos.visita();
-		PaginaDetalhesTarefa detalheTarefa = projetos.tarefas().detalhes();
+		PaginaDetalhesTarefa detalheTarefa = projetos.tarefas(1).detalhes();
 		assertTrue(detalheTarefa.existeNosDetalhes(titulo, descricao));
 	}
 
@@ -63,7 +63,7 @@ public class TesteTarefas {
 		// Remover isso depois que woshington concertar a funcionalidade de
 		// adicionar projeto
 		projetos.visita();
-		projetos.tarefas().finalizar();
+		projetos.tarefas(1).finalizar();
 		assertFalse(tarefas.existeNaListagem(titulo, descricao));
 	}
 

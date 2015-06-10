@@ -17,9 +17,14 @@ public class TesteProjetos {
 
 	private FirefoxDriver driver;
 	private PaginaProjetos projetos;
-	private final String titulo = "Teste de engenharia";
+	private final String titulo = "Teste de engenharia12346";
 	private final String descricao = "Desenvolvendo meu TCC";
-	private final String previsao = "2015-06-30";
+	private final String previsao = "30-08-16";
+
+	// Converte a previsão passada
+	String[] conversor = previsao.split("-");
+	private String visualizaPrevisao = conversor[0] + "/" + conversor[1] + "/"
+			+ conversor[2];
 
 	@Before
 	public void inicializa() {
@@ -36,21 +41,21 @@ public class TesteProjetos {
 	public void p1deveCadastrarUmProjeto() {
 		projetos.visita();
 		projetos.novo().cadastra(titulo, descricao, previsao);
-		assertTrue(projetos.existeNaListagem(titulo, previsao));
+		assertTrue(projetos.existeNaListagem(titulo, visualizaPrevisao));
 	}
 
 	@Test
 	public void p2deveVerOsDetalhesDoProjetoCadastrado() {
 		// Ultimo projeto da lista
-		PaginaDetalhesProjeto detalheProjeto = projetos.detalhes();
-		assertTrue(detalheProjeto
-				.existeNosDetalhes(titulo, descricao, previsao));
+		PaginaDetalhesProjeto detalheProjeto = projetos.detalhes(1);
+		assertTrue(detalheProjeto.existeNosDetalhes(titulo, descricao,
+				visualizaPrevisao));
 	}
 
 	@Test
 	public void p3deveAdicionarColaboradoresAoProjeto() {
 		String nome = "Rafael Torres";
-		String email = "rafael12@ifpi.edu.br";
+		String email = "rafael123456@ifpi.edu.br";
 		String senha = "123456789";
 		String repetirSenha = senha;
 		boolean admin = false;
@@ -63,7 +68,7 @@ public class TesteProjetos {
 		// Ultimo projeto da lista
 		projetos.visita();
 		PaginaColaboradoresDoProjeto colaboradoresProjeto = projetos
-				.colaboradores();
+				.colaboradores(1);
 
 		// adiciona o último usuário da lista de colaboradores [Passando usuário
 		// comum ou gerente]
@@ -75,8 +80,21 @@ public class TesteProjetos {
 	@Test
 	public void p4deveFinalizarUmProjeto() {
 		projetos.visita();
-		PaginaProjetosFinalizados finalizados = projetos.finalizar();
-		assertTrue(finalizados.existeNaListagem(titulo, previsao));
+
+		// Finaliza o primeiro projeto
+		PaginaProjetosFinalizados finalizados = projetos.finalizar(1);
+
+		// Visita a pagina de projetos finalizados
+		finalizados.visita();
+
+		// Ver os detalhes do projeto finalizado
+		PaginaDetalhesProjetoFinalizado proFinalizado = finalizados
+				.detalhesFinalizados();
+
+		// Verifica se os detalhes do projeto finalizado são os mesmo do projeto
+		// q foi finalizado
+		assertTrue(proFinalizado.existeNaListagem(titulo, descricao,
+				visualizaPrevisao));
 	}
 
 	@After

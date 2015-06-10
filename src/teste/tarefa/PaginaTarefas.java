@@ -23,7 +23,7 @@ public class PaginaTarefas {
 		// adicionar projeto
 		projetos.visita();
 
-		projetos.tarefas();
+		projetos.tarefas(1);
 	}
 
 	public PaginaNovaTarefa nova() {

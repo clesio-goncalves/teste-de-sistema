@@ -18,11 +18,11 @@ public class TesteUsuarios {
 	private PaginaUsuarios usuarios;
 	private String nomeUsuarioLogado = "woshington valdeci de sousa";
 
-	private String nomeNovoUsuario = "Clésio Araújo";
-	private String email = "clesio@goncalves12.com";
+	private String nomeNovoUsuario = "Clésio de Araújo";
+	private String email = "clesio.pi@ifpi.com";
 	private String senha = "12345678";
 	private String confirmaSenha = senha;
-	private boolean admin = false;
+	private boolean admin = true;
 
 	@Before
 	public void inicializa() {
