@@ -31,4 +31,10 @@ public class PaginaColaboradoresDoProjeto {
 				&& driver.getPageSource().contains(
 						tipo.equals("gerente") ? "SIM" : "NAO");
 	}
+
+	public boolean colaboradorAdicionado() {
+		return driver.getPageSource().contains(
+				"O colaborador do projeto foi salvo");
+	}
+
 }

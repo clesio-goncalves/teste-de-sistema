@@ -36,4 +36,8 @@ public class PaginaUsuarios {
 
 		return new PaginaDetalhesUsuario(driver);
 	}
+
+	public boolean usuarioSalvo() {
+		return driver.getPageSource().contains("O usuario foi salvo");
+	}
 }

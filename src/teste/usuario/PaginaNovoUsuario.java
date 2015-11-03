@@ -30,7 +30,59 @@ public class PaginaNovoUsuario {
 		}
 
 		txtNome.submit();
+	}
 
+	public boolean erroCadastro() {
+		return driver.getPageSource().contains(
+				"O usuario não pode ser salvo. Tente novamente.");
+	}
+
+	public boolean erroCadastroNomeEmBranco() {
+		return driver.getPageSource().contains("Error: Nome obrigatório!");
+	}
+
+	public boolean erroCadastroEmailEmBranco() {
+		return driver.getPageSource().contains("Error: E-mail obrigatório!");
+	}
+
+	public boolean erroCadastroSenhaEmBranco() {
+		return driver.getPageSource().contains("Error: Senha obrigatória!");
+	}
+
+	public boolean erroCadastroConfirmarSenhaEmBranco() {
+		return driver.getPageSource().contains("Error: Senhas não coincidem!");
+	}
+
+	public boolean erroNomeMenorMinimo() {
+		return driver.getPageSource().contains(
+				"Error: Minimo de caracteres 10!");
+	}
+
+	public boolean erroEmailInvalido() {
+		return driver.getPageSource().contains("Error: E-mail invalido!");
+	}
+
+	public boolean erroSenhaMenorMinimo() {
+		return driver.getPageSource().contains(
+				"Error senha: Mínimo de 8 caracteres.");
+	}
+
+	public boolean erroSenhaMaiorMaximo() {
+		return driver.getPageSource().contains(
+				"Error senha: Máximo de 12 caracteres.");
+	}
+
+	public boolean erroConfirmarSenhaInvalida() {
+		return driver.getPageSource().contains("Error: Senhas não coincidem!");
+	}
+
+	public boolean erroEmailCadastrado() {
+		return driver.getPageSource().contains("Error: E-mail já cadastrado!");
+	}
+
+	public boolean erroCadastroTudoEmBranco() {
+		return erroCadastro() && erroCadastroNomeEmBranco()
+				&& erroCadastroEmailEmBranco() && erroCadastroSenhaEmBranco();
 	}
 
 }

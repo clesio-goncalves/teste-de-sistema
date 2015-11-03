@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import teste.notificacao.PaginaNotificacaoProjeto;
 import teste.tarefa.PaginaTarefas;
 
 public class PaginaProjetos {
@@ -54,6 +55,14 @@ public class PaginaProjetos {
 		return new PaginaTarefas(driver);
 	}
 
+	public PaginaNotificacaoProjeto notificar(int posicao) {
+		List<WebElement> elementos = driver.findElements(By
+				.linkText("Notificar"));
+		elementos.get(posicao - 1).click();
+
+		return new PaginaNotificacaoProjeto(driver);
+	}
+
 	public PaginaProjetosFinalizados finalizar(int posicao) {
 		List<WebElement> elementos = driver.findElements(By
 				.linkText("Finalizar"));
@@ -63,5 +72,9 @@ public class PaginaProjetos {
 		driver.switchTo().alert().accept();
 
 		return new PaginaProjetosFinalizados(driver);
+	}
+
+	public boolean projetoSalvo() {
+		return driver.getPageSource().contains("O projeto foi salvo");
 	}
 }

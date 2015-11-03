@@ -25,4 +25,10 @@ public class PaginaProjetosFinalizados {
 
 		return new PaginaDetalhesProjetoFinalizado(driver);
 	}
+
+	public boolean existeNaListagem(String titulo, String previsao) {
+		return driver.getPageSource().contains(titulo)
+				&& driver.getPageSource().contains(previsao);
+	}
+
 }

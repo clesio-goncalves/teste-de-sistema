@@ -18,11 +18,6 @@ public class PaginaTarefas {
 
 	public void visita() {
 		PaginaProjetos projetos = new PaginaProjetos(driver);
-
-		// Remover isso depois que woshington concertar a funcionalidade de
-		// adicionar projeto
-		projetos.visita();
-
 		projetos.tarefas(1);
 	}
 
@@ -52,4 +47,9 @@ public class PaginaTarefas {
 
 		return new PaginaDetalhesTarefa(driver);
 	}
+
+	public boolean tarefaSalva() {
+		return driver.getPageSource().contains("A tarefa foi salva");
+	}
+
 }

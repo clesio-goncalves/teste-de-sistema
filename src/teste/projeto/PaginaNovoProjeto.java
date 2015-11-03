@@ -24,4 +24,41 @@ public class PaginaNovoProjeto {
 		txtTitulo.submit();
 	}
 
+	public boolean erroCadastro() {
+		return driver.getPageSource().contains(
+				"O projeto não pode ser salvo. Tente novamente.");
+	}
+
+	public boolean erroTituloEmBranco() {
+		return driver.getPageSource().contains("Error: Titulo obrigatório!");
+	}
+
+	public boolean erroTituloMenorMinimo() {
+		return driver.getPageSource().contains(
+				"Error titulo: Minimo de caracteres 10");
+	}
+
+	public boolean erroDescricaoEmBranco() {
+		return driver.getPageSource().contains("Error: Descrição obrigatório!");
+	}
+
+	public boolean erroDescricaoMenorMinimo() {
+		return driver.getPageSource().contains(
+				"Error descrição: Minimo de caracteres 20");
+	}
+
+	public boolean erroPrevisaoFormatoIncorreto() {
+		return driver.getPageSource().contains(
+				"Error: Previsão - data inválida");
+	}
+
+	public boolean erroTituloCadastrado() {
+		return driver.getPageSource().contains("Error: Titulo ja cadastrado!");
+	}
+
+	public boolean erroCadastroTudoEmBranco() {
+		return erroCadastro() && erroTituloEmBranco()
+				&& erroDescricaoEmBranco();
+	}
+
 }
